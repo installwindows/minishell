@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include "get_next_line.h"
 #include "libft.h"
 #include "ft_printf.h"
 #include "get_arg.c"
@@ -38,24 +39,12 @@ void	unset_command(char ***arg)
 
 int		main(int argc, char **argv)
 {
-	char	buf[BUF_SIZE + 1];
 	char	**arg;
+	char	*line;
 	int		r;
 	pid_t	pid;
-/*
-	for (int j = 0; argv[j]; j++)
-		ft_printf("%d: %s\n", j, argv[j]);
-	r = read(0, buf, BUF_SIZE);
-	set_command(buf, &arg);
-	ft_printf("command: %s\n", arg[0]);
-	for (int i = 1; arg[i]; i++)
-	{
-		ft_printf("%d: %s\n", i, arg[i]);
-		free(arg[i]);
-	}
-	free(arg);
-	exit(0);
-*/
+
+	line = NULL;
 	while (1)
 	{
 		ft_printf("$>");
@@ -81,5 +70,7 @@ int		main(int argc, char **argv)
 			unset_command(&arg);
 			//execve("/bin/ls", argv, NULL);
 		}
+		if (line)
+			free(line);
 	}
 }
