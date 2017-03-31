@@ -6,19 +6,52 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/30 18:10:29 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/30 23:51:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int		find_file(const char *path, const char *file)
+{
+	DIR				*p;
+	struct dirent	*e;
+	int				found;
+
+	found = 0;
+	if (!(p = opendir(path)))
+		return (0);
+	while ((e = readdir(p)))
+		if (!ft_strcmp(e->d_name, file))
+		{
+			found = 1;
+			break ;
+		}
+	closedir(p);
+	return (found);
+}
+
 char	*find_path(const char *cmd, t_msh *msh)
 {
-	char	**dirs;
+	char	**path_list;
 	char	*path;
 
-	dirs = strsplit(msh->path, ':');
-	
+	path = NULL;
+	path_list = strsplit(msh->path, ':');
+	if (path_list == NULL)
+		return (NULL);
+	while (*path_list)
+	{
+		if (find_file(*path_list, cmd))
+		{
+			path = ft_strjoin
+			break ;
+		}
+		free(*path_list++);
+	}
+	while (*path_list)
+		free(*path_list++);
+	free(path_list);
 	return (path);
 }
 
