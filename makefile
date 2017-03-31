@@ -1,5 +1,8 @@
 NAME=minishell
-SRC=shell.c
+SRC=main.c \
+	minishell.c \
+	parse.c \
+	gnl.c
 
 .PHONY: test
 
@@ -14,4 +17,4 @@ fclean:
 re: fclean all
 
 t:
-	gcc $(SRC) -o $(NAME) libft.a libftprintf.a -g
+	gcc -g $(SRC) -o $(NAME) libft.a libftprintf.a -g
