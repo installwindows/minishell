@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/30 21:36:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/31 14:46:57 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ typedef struct	s_msh
 
 void	minishell(t_msh *msh);
 t_cmd	*parse_line(char *line);
+
+char	*ft_pathjoin(const char *path, const char *file);
 
 #endif

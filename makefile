@@ -2,6 +2,7 @@ NAME=minishell
 SRC=main.c \
 	minishell.c \
 	parse.c \
+	ft_pathjoin.c \
 	gnl.c
 
 .PHONY: test

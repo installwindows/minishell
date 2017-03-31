@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/30 23:51:46 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/31 14:57:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ char	*find_path(const char *cmd, t_msh *msh)
 	char	*path;
 
 	path = NULL;
-	path_list = strsplit(msh->path, ':');
+	path_list = ft_strsplit(msh->path, ':');
 	if (path_list == NULL)
 		return (NULL);
 	while (*path_list)
 	{
 		if (find_file(*path_list, cmd))
 		{
-			path = ft_strjoin
+			path = ft_pathjoin(*path_list, cmd);
 			break ;
 		}
 		free(*path_list++);
@@ -57,17 +57,26 @@ char	*find_path(const char *cmd, t_msh *msh)
 
 int		exec_command(t_msh *msh)
 {
-	t_cmd	**cmd;
+	t_cmd	*cmd;
 	char	*path;
 
 	cmd = parse_line(msh->line);
-	path = find_path(cmd[0], msh);
+	path = find_path(cmd->argv[0], msh);
+	if (path)
+	{
+		ft_printf("Command found! %s\n", path);
+		free(path);
+	}
+	else
+		ft_fprintf(2, "msh: command not found: %s\n", cmd);
 	return (0);
 }
 
 void	minishell(t_msh *msh)
 {
-	while (1)
+	msh->line = "ls";
+	exec_command(msh);
+	while (0)
 	{
 		ft_printf("%d-%s", msh->pid, msh->psone);
 		msh->size = gnl(0, &msh->line);
