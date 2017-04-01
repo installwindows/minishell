@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/31 19:29:24 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/01 13:52:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		exec_command(t_msh *msh)
 
 	r = 0;
 	cmd = parse_line(msh->line);
-	if (cmd->argv[0])
+	if (exec_builtin(msh, cmd) && cmd->argv[0])
 	{
 		path = find_path(cmd->argv[0], msh);
 		if (path)
@@ -98,8 +98,6 @@ int		exec_command(t_msh *msh)
 
 void	minishell(t_msh *msh)
 {
-	//msh->line = "";
-	//exec_command(msh);
 	while (1)
 	{
 		ft_printf("%s", msh->psone);
