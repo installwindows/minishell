@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/31 14:57:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/31 19:29:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,74 @@ char	*find_path(const char *cmd, t_msh *msh)
 {
 	char	**path_list;
 	char	*path;
+	int		i;
 
+	if (!ft_strncmp(cmd, "./", 2))
+		return (find_file(".", cmd + 2) ? ft_strdup(cmd) : NULL);
 	path = NULL;
 	path_list = ft_strsplit(msh->path, ':');
 	if (path_list == NULL)
 		return (NULL);
-	while (*path_list)
+	i = 0;
+	while (path_list[i])
 	{
-		if (find_file(*path_list, cmd))
+		if (find_file(path_list[i], cmd))
 		{
-			path = ft_pathjoin(*path_list, cmd);
+			path = ft_pathjoin(path_list[i], cmd);
 			break ;
 		}
-		free(*path_list++);
+		free(path_list[i++]);
 	}
-	while (*path_list)
-		free(*path_list++);
+	while (path_list[i])
+		free(path_list[i++]);
 	free(path_list);
 	return (path);
+}
+
+void	free_cmd(t_cmd *cmd)
+{
+	int		i;
+
+	i = 0;
+	while (i < cmd->argc)
+		free(cmd->argv[i++]);
+	free(cmd->argv);
+	free(cmd);
 }
 
 int		exec_command(t_msh *msh)
 {
 	t_cmd	*cmd;
 	char	*path;
+	int		r;
 
+	r = 0;
 	cmd = parse_line(msh->line);
-	path = find_path(cmd->argv[0], msh);
-	if (path)
+	if (cmd->argv[0])
 	{
-		ft_printf("Command found! %s\n", path);
-		free(path);
+		path = find_path(cmd->argv[0], msh);
+		if (path)
+		{
+			//ft_printf("Command found! %s\n", path);
+			if (execve(path, cmd->argv, msh->env) == -1)
+				ft_fprintf(2, "Can't execute command: %s\n", path);
+			free(path);
+			r = 1;
+		}
+		else
+			ft_fprintf((r = 2), "msh: command not found: %s\n", cmd->argv[0]);
 	}
-	else
-		ft_fprintf(2, "msh: command not found: %s\n", cmd);
-	return (0);
+	free_cmd(cmd);
+	return (r);
 }
 
 void	minishell(t_msh *msh)
 {
-	msh->line = "ls";
-	exec_command(msh);
-	while (0)
+	//msh->line = "";
+	//exec_command(msh);
+	while (1)
 	{
-		ft_printf("%d-%s", msh->pid, msh->psone);
+		ft_printf("%s", msh->psone);
 		msh->size = gnl(0, &msh->line);
 		msh->pid = fork();
 		if (msh->pid > 0)

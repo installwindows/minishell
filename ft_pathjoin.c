@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:23:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/31 14:49:15 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/31 18:14:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char	*ft_pathjoin(const char *path, const char *file)
 	}
 	l1 = 0;
 	pathfile[i++] = '/';
-	while (i < size - 1)
+	while (i < size)
 	{
-		pathfile[i] = file[l1];
+		pathfile[i] = file[l1++];
 		i++;
 	}
 	pathfile[i] = '\0';
