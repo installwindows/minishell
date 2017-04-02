@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/01 13:52:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/01 22:09:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,50 +70,52 @@ void	free_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
-int		exec_command(t_msh *msh)
+int		exec_command(t_msh *msh, t_cmd *cmd)
 {
-	t_cmd	*cmd;
 	char	*path;
 	int		r;
 
 	r = 0;
-	cmd = parse_line(msh->line);
-	if (exec_builtin(msh, cmd) && cmd->argv[0])
+	path = find_path(cmd->argv[0], msh);
+	if (path)
 	{
-		path = find_path(cmd->argv[0], msh);
-		if (path)
-		{
-			//ft_printf("Command found! %s\n", path);
-			if (execve(path, cmd->argv, msh->env) == -1)
-				ft_fprintf(2, "Can't execute command: %s\n", path);
-			free(path);
-			r = 1;
-		}
-		else
-			ft_fprintf((r = 2), "msh: command not found: %s\n", cmd->argv[0]);
+		//ft_printf("Command found! %s\n", path);
+		if (execve(path, cmd->argv, msh->env) == -1)
+			ft_fprintf(2, "Can't execute command: %s\n", path);
+		free(path);
+		r = 1;
 	}
-	free_cmd(cmd);
+	else
+		ft_fprintf((r = 2), "msh: command not found: %s\n", cmd->argv[0]);
 	return (r);
 }
 
 void	minishell(t_msh *msh)
 {
+	t_cmd	*cmd;
+	int		(*command)(t_msh*, t_cmd*);
+
 	while (1)
 	{
-		ft_printf("%s", msh->psone);
+		ft_printf("%s", msh->prompt);
 		msh->size = gnl(0, &msh->line);
-		msh->pid = fork();
-		if (msh->pid > 0)
+		if ((cmd = parse_line(msh->line)) && cmd->argv[0])
 		{
-			wait(NULL);
+			if ((command = find_builtin(msh, cmd)))
+				command(msh, cmd);
+			else
+			{
+				msh->pid = fork();
+				if (msh->pid > 0)
+					wait(NULL);
+				else if (msh->pid == 0)
+					exit(exec_command(msh, cmd));
+				else
+					ft_fprintf(2, "Fork failed\n");
+			}
 		}
-		else if (msh->pid == 0)
-		{
-			exit(exec_command(msh));
-		}
-		else
-			ft_fprintf(2, "Fork failed\n");
 		if (msh->size > 0)
 			free(msh->line);
+		free_cmd(cmd);
 	}
 }

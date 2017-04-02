@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/01 13:49:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/01 22:15:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "libft.h"
 # include "ft_printf.h"
 
+
+
 typedef struct	s_cmd
 {
 	char		**argv;
@@ -32,16 +34,30 @@ typedef struct	s_msh
 	char		*line;
 	int			size;
 	pid_t		pid;
-	char		*psone;
+	char		*prompt;
 	char		**env;
 	char		**argv;
 	int			argc;
 	char		*path;
-	const char	**builtin;
+	const struct s_builtin	**builtin;
 }				t_msh;
+typedef struct	s_builtin
+{
+	char		*name;
+	int 		(*command)(t_msh*, t_cmd*);
+}				t_builtin;
+typedef int		(*t_command)(t_msh*, t_cmd*);
 
 void			minishell(t_msh *msh);
 t_cmd			*parse_line(char *line);
+t_command		find_builtin(t_msh *msh, t_cmd *cmd);
+
+int				msh_echo(t_msh *msh, t_cmd *cmd);
+int				msh_cd(t_msh *msh, t_cmd *cmd);
+int				msh_setenv(t_msh *msh, t_cmd *cmd);
+int				msh_unsetenv(t_msh *msh, t_cmd *cmd);
+int				msh_env(t_msh *msh, t_cmd *cmd);
+int				msh_exit(t_msh *msh, t_cmd *cmd);
 
 char			*ft_pathjoin(const char *path, const char *file);
 

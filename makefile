@@ -3,6 +3,7 @@ SRC=main.c \
 	minishell.c \
 	parse.c \
 	ft_pathjoin.c \
+	builtin.c \
 	gnl.c
 
 .PHONY: test
