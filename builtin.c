@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/01 22:14:50 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/02 18:27:36 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 
 t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 {
+	if (!ft_strcmp(cmd->argv[0], "echo"))
+		return (&msh_echo);
+	if (!ft_strcmp(cmd->argv[0], "cd"))
+		return (&msh_cd);
+	if (!ft_strcmp(cmd->argv[0], "setenv"))
+		return (&msh_setenv);
+	if (!ft_strcmp(cmd->argv[0], "unsetenv"))
+		return (&msh_unsetenv);
+	if (!ft_strcmp(cmd->argv[0], "env"))
+		return (&msh_env);
+	if (!ft_strcmp(cmd->argv[0], "exit"))
+		return (&msh_exit);
+	return (NULL);
+	/*
 	int		i;
 
 	i = 0;
@@ -26,6 +40,7 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 		i++;
 	}
 	return (NULL);
+	*/
 }
 
 int		msh_echo(t_msh *msh, t_cmd *cmd)
