@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/02 18:27:36 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/02 19:33:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,15 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 
 int		msh_echo(t_msh *msh, t_cmd *cmd)
 {
-	ft_printf("echo\n");
+	int		i;
+
+	i = 1;
+	while (cmd->argv[i])
+	{
+		ft_printf("%s%s", cmd->argv[i], i < (cmd->argc - 1) ? " " : "");
+		i++;
+	}
+	ft_printf("\n");
 	return (0);
 }
 
@@ -75,6 +83,6 @@ int		msh_env(t_msh *msh, t_cmd *cmd)
 
 int		msh_exit(t_msh *msh, t_cmd *cmd)
 {
-	ft_printf("exit\n");
+	exit(0);
 	return (0);
 }
