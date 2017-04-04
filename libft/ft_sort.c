@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.h                                              :+:      :+:    :+:   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/23 23:43:03 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/28 10:50:37 by varnaud          ###   ########.fr       */
+/*   Created: 2017/02/01 14:10:29 by varnaud           #+#    #+#             */
+/*   Updated: 2017/02/02 17:39:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
-# define BUFF_SIZE 1024
+#include "libft.h"
 
-typedef struct	s_fd
+static void	swap(char **s1, char **s2)
 {
-	int			fd;
-	int			i;
-	int			size;
-	char		*buf;
-	struct s_fd	*next;
-}				t_fd;
+	char	*tmp;
 
-int				gnl(const int fd, char **line);
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
+}
 
-#endif
+char		**ft_sort_words(char **words, int nbwords)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < nbwords)
+	{
+		j = i + 1;
+		while (j < nbwords)
+		{
+			if (ft_strcmp(words[i], words[j]) > 0)
+				swap(&words[i], &words[j]);
+			j++;
+		}
+		i++;
+	}
+	return (words);
+}

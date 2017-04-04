@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 16:05:36 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/30 17:43:29 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/03 23:37:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,26 @@
 
 static int	get_argc(char *line)
 {
+	int		i;
 	int		argc;
+	int		q;
 
+	i = 0;
 	argc = 0;
-	while (*line)
+	q = 0;
+	while (line[i])
 	{
-		while (*line && *line == ' ')
-			line++;
-		if (*line)
+		while (line[i] && line[i] == ' ')
+			i++;
+		if (line[i])
 			argc++;
-		while (*line && *line != ' ')
-			line++;
+		while (line[i] && line[i] != ' ')
+		{
+			if (line[i] == '"' && line[i > 0 ? i - 1 : i] != '\\')
+				while (line[++i] && line[i] != '"')
+					;
+			i++;
+		}
 	}
 	return (argc);
 }
@@ -33,35 +42,54 @@ t_cmd		*parse_line(char *line)
 {
 	t_cmd	*cmd;
 	char	*tmp;
+	char	*b;
 	int		i;
+	int		q;
 
+	b = line;
 	cmd = malloc(sizeof(t_cmd));
 	cmd->argc = get_argc(line);
 	cmd->argv = malloc(sizeof(char*) * (cmd->argc + 1));
 	cmd->argv[cmd->argc] = NULL;
 	i = 0;
 	tmp = line;
+	q = 0;
 	while (i < cmd->argc)
 	{
 		while (*line && *line == ' ')
 			tmp = ++line;
-		while (*line && *line != ' ')
+		q = 0;
+		while (*line)
+		{
+			if (!q && *line == ' ')
+				break ;
+			if (q && *line == '"' && *(line - 1 >= b ? line - 1 : line) != '\\')
+				break ;
+			if (!q && *line == '"' && *(line - 1 >= b ? line - 1 : line) != '\\')
+			{
+				tmp = line + 1;
+				q = 1;
+			}
 			line++;
-		cmd->argv[i++] = ft_strsub(tmp, 0, line - tmp);
+		}
+		cmd->argv[i++] = ft_strsubesc(tmp, 0, line - tmp);
+		if (q)
+			line++;
 	}
 	return (cmd);
 }
 
-/*
+
 int			main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
 		t_cmd *cmd = parse_line(argv[1]);
 		int	i = 0;
+		ft_printf("argc: %d\n", cmd->argc);
 		while (i < cmd->argc)
 		{
-			printf("|%s|\n", cmd->argv[i]);
+			ft_printf("|%s|\n", cmd->argv[i]);
 			free(cmd->argv[i++]);
 		}
 		free(cmd->argv);
@@ -69,7 +97,7 @@ int			main(int argc, char **argv)
 	}
 	else
 	{
-		parse_line("");
+		ft_printf("No input.");
 	}
 }
-*/
+

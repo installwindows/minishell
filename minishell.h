@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/01 22:15:03 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/03 23:05:02 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <dirent.h>
-# include "gnl.h"
 # include "libft.h"
 # include "ft_printf.h"
 
@@ -39,7 +38,7 @@ typedef struct	s_msh
 	char		**argv;
 	int			argc;
 	char		*path;
-	const struct s_builtin	**builtin;
+	//const struct s_builtin	**builtin;
 }				t_msh;
 typedef struct	s_builtin
 {

@@ -1,22 +1,28 @@
 NAME=minishell
+CC=gcc
+CFLAGS=-g -Ilibft
 SRC=main.c \
 	minishell.c \
 	parse.c \
 	ft_pathjoin.c \
-	builtin.c \
-	gnl.c
-
+	builtin.c
+OBJ=$(SRC:.c=.o)
 .PHONY: test
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(SRC) -o $(NAME) libft.a libftprintf.a
+$(NAME): $(OBJ) libft.a minishell.h
+	gcc $(OBJ) -o $(NAME) libft/libft.a
+
+libft.a:
+	make -C libft
+
+clean:
+	make -C libft clean
+	rm -f $(OBJ)
 
 fclean:
-	rm -rf $(NAME)
+	make -C libft fclean
+	rm -f $(NAME)
 
 re: fclean all
-
-t:
-	gcc -g $(SRC) -o $(NAME) libft.a libftprintf.a -g
