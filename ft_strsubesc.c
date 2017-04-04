@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strsubesc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 21:26:57 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 21:52:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/03 23:50:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	while (i < len)
 	{
+		if (s[start] == '\\' && s[start + 1]  && s[start + 1] != '\\')
+			start += 2;
 		fresh[i] = s[start];
 		i++;
 		start++;
