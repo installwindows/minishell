@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 19:13:46 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 22:17:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		msh_setenv(t_msh *msh, t_cmd *cmd)
 	key = get_env(msh->env, cmd->argv[1]);
 	if (key)
 	{
-	
+		//new = ft_strcjoin(cmd->argv[1], cmd->argv[2], '=');
 	}
 	else
 	{

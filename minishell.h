@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 19:12:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 22:19:19 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <sys/wait.h>
 # include <dirent.h>
 # include "libft.h"
-# include "ft_printf.h"
-
-
 
 typedef struct	s_cmd
 {
@@ -51,7 +48,7 @@ typedef int		(*t_command)(t_msh*, t_cmd*);
 void			minishell(t_msh *msh);
 t_cmd			*parse_line(char *line);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
-char			*get_env(char **env, const char *key);
+char			**get_env(char **env, const char *key);
 
 /*
 ** Builtin commands

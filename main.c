@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:02:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 17:49:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 22:19:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char		*get_env(char **env, const char *key)
+char		**get_env(char **env, const char *key)
 {
 	int		len;
 
@@ -20,7 +20,7 @@ char		*get_env(char **env, const char *key)
 	while (*env)
 	{
 		if (!ft_strncmp(*env, key, len))
-			return (*env + len + 1);
+			return (env);
 		env++;
 	}
 	return (NULL);
@@ -44,7 +44,7 @@ int			main(int argc, char **argv, char **env)
 	msh->prompt = malloc(sizeof(char) * 1024);
 	ft_strcpy(msh->prompt, "\e[92m$>\e[39m");
 	msh->pid = 42;
-	msh->path = get_env(env, "PATH");
-	msh->home = get_env(env, "HOME");
+	msh->path = *get_env(env, "PATH");
+	msh->home = *get_env(env, "HOME");
 	minishell(msh);
 }
