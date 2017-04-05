@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/02 19:33:45 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 19:13:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,36 @@ int		msh_echo(t_msh *msh, t_cmd *cmd)
 
 int		msh_cd(t_msh *msh, t_cmd *cmd)
 {
-	ft_printf("cd\n");
-	return (0);
+	int		r;
+
+	r = 0;
+	if (cmd->argv[1])
+	{
+		if (chdir(cmd->argv[1]) == -1)
+			ft_fprintf((r = 2), "Can't cd into: %s\n", cmd->argv[1]);
+	}
+	else
+	{
+		if (chdir(msh->home) == -1)
+			ft_fprintf((r = 2), "Can't cd into: %s\n", msh->home);
+	}
+	return (r);
 }
 
 int		msh_setenv(t_msh *msh, t_cmd *cmd)
 {
+	char	*key;
+	char	*new;
+
+	key = get_env(msh->env, cmd->argv[1]);
+	if (key)
+	{
+	
+	}
+	else
+	{
+
+	}
 	ft_printf("setenv\n");
 	return (0);
 }

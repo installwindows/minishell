@@ -6,18 +6,21 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:02:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/03 22:06:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 17:49:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*set_path(char **env)
+char		*get_env(char **env, const char *key)
 {
+	int		len;
+
+	len = ft_strlen(key);
 	while (*env)
 	{
-		if (!ft_strncmp(*env, "PATH=", 5))
-			return (*env + 5);
+		if (!ft_strncmp(*env, key, len))
+			return (*env + len + 1);
 		env++;
 	}
 	return (NULL);
@@ -38,8 +41,10 @@ int			main(int argc, char **argv, char **env)
 	msh->argv = argv;
 	msh->argc = argc;
 	msh->env = env;
-	msh->prompt = ft_strdup("$>");
+	msh->prompt = malloc(sizeof(char) * 1024);
+	ft_strcpy(msh->prompt, "\e[92m$>\e[39m");
 	msh->pid = 42;
-	msh->path = set_path(env);
+	msh->path = get_env(env, "PATH");
+	msh->home = get_env(env, "HOME");
 	minishell(msh);
 }

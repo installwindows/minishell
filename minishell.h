@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/03 23:05:02 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 19:12:52 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_msh
 	char		**argv;
 	int			argc;
 	char		*path;
+	char		*home;
 	//const struct s_builtin	**builtin;
 }				t_msh;
 typedef struct	s_builtin
@@ -50,6 +51,11 @@ typedef int		(*t_command)(t_msh*, t_cmd*);
 void			minishell(t_msh *msh);
 t_cmd			*parse_line(char *line);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
+char			*get_env(char **env, const char *key);
+
+/*
+** Builtin commands
+*/
 
 int				msh_echo(t_msh *msh, t_cmd *cmd);
 int				msh_cd(t_msh *msh, t_cmd *cmd);
@@ -58,6 +64,6 @@ int				msh_unsetenv(t_msh *msh, t_cmd *cmd);
 int				msh_env(t_msh *msh, t_cmd *cmd);
 int				msh_exit(t_msh *msh, t_cmd *cmd);
 
-char			*ft_pathjoin(const char *path, const char *file);
+char			*ft_pathjoin(const char *path, const char *file, char c);
 
 #endif

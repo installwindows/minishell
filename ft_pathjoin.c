@@ -6,14 +6,14 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:23:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/03 22:13:29 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/04 19:12:38 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_pathjoin(const char *path, const char *file)
+char	*ft_pathjoin(const char *path, const char *file, char c)
 {
 	char	*pathfile;
 	int		i;
@@ -32,7 +32,7 @@ char	*ft_pathjoin(const char *path, const char *file)
 		i++;
 	}
 	l1 = 0;
-	pathfile[i++] = '/';
+	pathfile[i++] = c;
 	while (i < size)
 	{
 		pathfile[i] = file[l1++];
