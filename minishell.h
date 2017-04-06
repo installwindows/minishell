@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 22:19:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/05 15:52:17 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,12 @@ int				msh_setenv(t_msh *msh, t_cmd *cmd);
 int				msh_unsetenv(t_msh *msh, t_cmd *cmd);
 int				msh_env(t_msh *msh, t_cmd *cmd);
 int				msh_exit(t_msh *msh, t_cmd *cmd);
+int				msh_printenv(t_msh *msh, t_cmd *cmd);
 
-char			*ft_pathjoin(const char *path, const char *file, char c);
+/*
+** TODO Add to libft
+*/
+char			*ft_strcjoin(const char *path, const char *file, char c);
+char			**ft_arrayadd(char **a, const char *env);
 
 #endif

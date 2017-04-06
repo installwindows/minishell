@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 22:17:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/05 17:19:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 		return (&msh_env);
 	if (!ft_strcmp(cmd->argv[0], "exit"))
 		return (&msh_exit);
+	if (!ft_strcmp(cmd->argv[0], "printenv"))
+		return (&msh_printenv);
 	return (NULL);
 	/*
 	int		i;
@@ -77,19 +79,23 @@ int		msh_cd(t_msh *msh, t_cmd *cmd)
 
 int		msh_setenv(t_msh *msh, t_cmd *cmd)
 {
-	char	*key;
+	char	**key;
 	char	*new;
+	char	**env;
 
 	key = get_env(msh->env, cmd->argv[1]);
 	if (key)
 	{
-		//new = ft_strcjoin(cmd->argv[1], cmd->argv[2], '=');
+		new = ft_strcjoin(cmd->argv[1], cmd->argv[2], '=');
+		//free(*key);
+		*key = new;
 	}
 	else
 	{
-
+		env = ft_arrayadd(msh->env, ft_strcjoin(cmd->argv[1], cmd->argv[2], '='));
+		//free(msh->env);
+		msh->env = env;
 	}
-	ft_printf("setenv\n");
 	return (0);
 }
 
@@ -108,5 +114,18 @@ int		msh_env(t_msh *msh, t_cmd *cmd)
 int		msh_exit(t_msh *msh, t_cmd *cmd)
 {
 	exit(0);
+	return (0);
+}
+
+int		msh_printenv(t_msh *msh, t_cmd *cmd)
+{
+	int		i;
+
+	i = 0;
+	while (msh->env[i])
+	{
+		ft_printf("%s\n", msh->env[i]);
+		i++;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 22:19:51 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/05 15:52:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*find_path(const char *cmd, t_msh *msh)
 	{
 		if (find_file(path_list[i], cmd))
 		{
-			path = ft_pathjoin(path_list[i], cmd, '/');
+			path = ft_strcjoin(path_list[i], cmd, '/');
 			break ;
 		}
 		free(path_list[i++]);

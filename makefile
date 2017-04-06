@@ -4,8 +4,8 @@ CFLAGS=-g -Ilibft
 SRC=main.c \
 	minishell.c \
 	parse.c \
-	ft_pathjoin.c \
-	builtin.c
+	builtin.c \
+	ft_strcjoin.c
 OBJ=$(SRC:.c=.o)
 .PHONY: test
 
