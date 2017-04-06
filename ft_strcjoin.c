@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 15:24:04 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/05 15:52:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/05 23:43:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_arrayadd(char **a, const char *env)
 	size = 0;
 	while (a[size])
 		size++;
-	new = malloc(sizeof(char*) * (size + 1));
+	new = malloc(sizeof(char*) * (size + 2));
 	i = 0;
 	while (i < size)
 	{
@@ -60,5 +60,28 @@ char	**ft_arrayadd(char **a, const char *env)
 	}
 	new[i++] = ft_strdup(env);
 	new[i] = NULL;
+	return (new);
+}
+
+char	**ft_arrayrm(char **a, const char *key)
+{
+	char	**new;
+	int		size;
+	int		i;
+	int		j;
+
+	size = 0;
+	while (a[size])
+		size++;
+	new = malloc(sizeof(char*) * (size));
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		if (ft_strcmp(a[i], key))
+			new[j++] = a[i];
+		i++;
+	}
+	new[j] = NULL;
 	return (new);
 }

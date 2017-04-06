@@ -5,6 +5,7 @@ SRC=main.c \
 	minishell.c \
 	parse.c \
 	builtin.c \
+	msh_error.c \
 	ft_strcjoin.c
 OBJ=$(SRC:.c=.o)
 .PHONY: test

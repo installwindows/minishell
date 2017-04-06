@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/05 17:19:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/05 23:47:49 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,15 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 		return (&msh_setenv);
 	if (!ft_strcmp(cmd->argv[0], "unsetenv"))
 		return (&msh_unsetenv);
-	if (!ft_strcmp(cmd->argv[0], "env"))
-		return (&msh_env);
+	//if (!ft_strcmp(cmd->argv[0], "env"))
+	//	return (&msh_env);
 	if (!ft_strcmp(cmd->argv[0], "exit"))
 		return (&msh_exit);
 	if (!ft_strcmp(cmd->argv[0], "printenv"))
 		return (&msh_printenv);
+	if (!ft_strcmp(cmd->argv[0], "debug"))
+		return (&msh_debug);
 	return (NULL);
-	/*
-	int		i;
-
-	i = 0;
-	while (msh->builtin[i])
-	{
-		if (!ft_strcmp(msh->builtin[i]->name, cmd->argv[0]))
-		{
-			return (msh->builtin[i]->command);
-		}
-		i++;
-	}
-	return (NULL);
-	*/
 }
 
 int		msh_echo(t_msh *msh, t_cmd *cmd)
@@ -64,7 +52,7 @@ int		msh_cd(t_msh *msh, t_cmd *cmd)
 	int		r;
 
 	r = 0;
-	if (cmd->argv[1])
+	if (cmd->argc > 1)
 	{
 		if (chdir(cmd->argv[1]) == -1)
 			ft_fprintf((r = 2), "Can't cd into: %s\n", cmd->argv[1]);
@@ -83,17 +71,20 @@ int		msh_setenv(t_msh *msh, t_cmd *cmd)
 	char	*new;
 	char	**env;
 
+	if (cmd->argc <= 2)
+		return (ft_fprintf(2, "usage: setenv key value\n"));
 	key = get_env(msh->env, cmd->argv[1]);
 	if (key)
 	{
 		new = ft_strcjoin(cmd->argv[1], cmd->argv[2], '=');
-		//free(*key);
+		free(*key);
 		*key = new;
 	}
 	else
 	{
-		env = ft_arrayadd(msh->env, ft_strcjoin(cmd->argv[1], cmd->argv[2], '='));
-		//free(msh->env);
+		env = ft_arrayadd(msh->env, (new = ft_strcjoin(cmd->argv[1], cmd->argv[2], '=')));
+		free(new);
+		free(msh->env);
 		msh->env = env;
 	}
 	return (0);
@@ -101,7 +92,19 @@ int		msh_setenv(t_msh *msh, t_cmd *cmd)
 
 int		msh_unsetenv(t_msh *msh, t_cmd *cmd)
 {
-	ft_printf("unsetenv\n");
+	char	**env;
+	char	**key;
+
+	if (cmd->argc < 2)
+		return (ft_fprintf(2, "usage: unsetenv key\n"));
+	key = get_env(msh->env, cmd->argv[1]);
+	if (key)
+	{
+		env = ft_arrayrm(msh->env, *key);
+		free(*key);
+		free(msh->env);
+		msh->env = env;
+	}
 	return (0);
 }
 
@@ -121,11 +124,18 @@ int		msh_printenv(t_msh *msh, t_cmd *cmd)
 {
 	int		i;
 
-	i = 0;
-	while (msh->env[i])
+	i = -1;
+	while (msh->env[++i])
 	{
+		if (cmd->argc > 1)
+			if (ft_strncmp(msh->env[i], cmd->argv[1], ft_strlen(cmd->argv[1])))
+				continue ;
 		ft_printf("%s\n", msh->env[i]);
-		i++;
 	}
+	return (0);
+}
+
+int		msh_debug(t_msh *msh, t_cmd *cmd)
+{
 	return (0);
 }
