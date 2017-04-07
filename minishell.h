@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 15:11:48 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/06 22:26:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ typedef int		(*t_command)(t_msh*, t_cmd*);
 
 int				print_error(int error, const char *msg);
 void			minishell(t_msh *msh);
-t_cmd			*parse_line(char *line);
+//t_cmd			*parse_line(char *line);
+t_cmd			*setup_command(char *line);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
 char			**get_env(char **env, const char *key);
 

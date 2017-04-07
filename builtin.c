@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 17:40:55 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/06 23:19:19 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 		return (&msh_setenv);
 	if (!ft_strcmp(cmd->argv[0], "unsetenv"))
 		return (&msh_unsetenv);
-	//if (!ft_strcmp(cmd->argv[0], "env"))
-	//	return (&msh_env);
+	if (!ft_strcmp(cmd->argv[0], "env"))
+		return (&msh_env);
 	if (!ft_strcmp(cmd->argv[0], "exit"))
 		return (&msh_exit);
 	if (!ft_strcmp(cmd->argv[0], "printenv"))
@@ -110,42 +110,44 @@ int		msh_unsetenv(t_msh *msh, t_cmd *cmd)
 
 static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
 {
-	char	**env;
 	t_cmd	*c;
+	int		i;
 
-	if (cmd->argc < 2)
+	if (!(c = malloc(sizeof(t_cmd))))
 		return (NULL);
-	env = 
-	env = malloc(sizeof(t_cmd));
+	i = 0;
+	while (cmd->argv[++i])
+	{
+		if (!ft_strchr(cmd->argv[i], '='))
+			break ;
+	}
+	if (i > 1 && i < cmd->argc)
+		c->env = set_env(cmd->argv, i - 1);
 
+	return (c);
 }
 
 int		msh_env(t_msh *msh, t_cmd *cmd)
 {
-	char	*path;
-	char	**env;
-	char	**argv;
 	t_cmd	*p;
 
-	p = set_builtin_env(msh, cmd);
 	if (cmd->argc < 2)
 		return (ft_fprintf(2, "usage: env [key=value]... [program [arg]...]\n"));
-	path = find_path(cmd->argv[cmd->argc - 1], msh);
-	if (!path)
-		return (print_error(MSH_PROGRAM_NOT_FOUND, cmd->argv[cmd->argc - 1]));
+	p = set_builtin_env(msh, cmd);
+	if (!p)
+		return (1);
 	msh->pid = fork();
 	if (msh->pid > 0)
 		wait(NULL);
 	else if (msh->pid == 0)
 	{
-		env = get_key_value(t_cmd->argv);
-		if (execve(path, argv, env) == -1)
-			print_error(MSH_NOT_EXECUTABLE, path);
+		if (execve(p->path, p->argv, p->env) == -1)
+			print_error(MSH_NOT_EXECUTABLE, p->path);
 		exit(1);
 	}
 	else
 		print_error(MSH_FORK_FAILED, NULL);
-	free(path);
+	free_cmd(p);
 	return (0);
 }
 

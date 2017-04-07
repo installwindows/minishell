@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 16:05:36 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 21:20:38 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/06 22:25:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ t_cmd		*setup_command(char *line)
 	return (cmd);
 }
 
+/*
 int			main(int argc, char **argv)
 {
 	t_cmd	*cmd;
@@ -209,3 +210,4 @@ int			main(int argc, char **argv)
 	free(cmd);
 	free(line);
 }
+*/

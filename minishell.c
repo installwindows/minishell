@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/05 22:16:58 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/06 22:28:27 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	minishell(t_msh *msh)
 	{
 		ft_printf("%s", msh->prompt);
 		msh->line_size = gnl(0, &msh->line);
-		if ((cmd = parse_line(msh->line)) && cmd->argv[0])
+		if ((cmd = setup_command(msh->line)))
 		{
 			if ((builtin = find_builtin(msh, cmd)))
 				builtin(msh, cmd);
