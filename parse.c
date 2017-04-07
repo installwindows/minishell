@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 16:05:36 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 17:40:47 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/06 21:20:38 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,57 @@ static int	setup_line(char *line, int i, int count)
 	return (setup_line(line, i, count));
 }
 
+static char	**split_line(char *line, int size, int count, char c)
+{
+	char	**argv;
+	int		i;
+	int		j;
+	int		k;
+	int		l;
 
+	if (!(argv = malloc(sizeof(char*) * (count + 1))))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (count--)
+	{
+		while (i < size && line[i] == c)
+			i++;
+		k = i;
+		while (i < size && line[i] != c)
+			i++;
+		if (!(argv[j] = malloc(sizeof(char) * (i - k + 1))))
+			return (NULL);
+		l = 0;
+		while ((argv[j][l] = line[k++]))
+			l += line[k - 1] == '"' && P_V(line, k - 1) != '\\' ? 0 : 1;
+		j++;
+	}
+	return (argv);
+}
+
+t_cmd		*setup_command(char *line)
+{
+	t_cmd	*cmd;
+	char	**argv;
+	int		argc;
+	int		len;
+
+	len = ft_strlen(line);
+	argc = setup_line(line, 0, 0);
+	if (argc == 0)
+		return (NULL);
+	argv = split_line(line, len, argc, '\0');
+	if (argv == NULL)
+		return (NULL);
+	if (!(cmd = malloc(sizeof(t_cmd))))
+		return (NULL);
+	cmd->argv = argv;
+	cmd->argc = argc;
+	cmd->path = NULL;
+	cmd->env = NULL;
+	return (cmd);
+}
 
 int			main(int argc, char **argv)
 {
@@ -134,33 +184,22 @@ int			main(int argc, char **argv)
 	int		i;
 	int		r;
 	char	*line;
-	int		len;
 
-	printf("argc: %d\n", argc - 1);
-	while (*++argv)
-		ft_printf("%s\n", *argv);
-	ft_printf("----\n");
+	//printf("argc: %d\n", argc - 1);
+	//while (*++argv)
+	//	ft_printf("%s\n", *argv);
+	//ft_printf("----\n");
 	r = gnl(0, &line);
 	if (r == -1 || !line)
 	{
 		ft_fprintf(2, "%s: no input\n", argv[0]);
 		return (1);
 	}
-	len = ft_strlen(line);
-	ft_printf("argc: %d\n", setup_line(line, 0, 0));
-	i = 0;
-	while (i < len)
-	{
-		if (line[i])
-			ft_printf("%c\n", line[i]);
-		else
-			ft_printf("\\0\n");
-		i++;
-	}
-	/*
-	cmd = parse_line(line);
-	i = 0;
+	cmd = setup_command(line);
+	if (cmd == NULL)
+		return (ft_fprintf(2, "No command to set\n"));
 	ft_printf("path: %s\nargc: %d\n", cmd->path, cmd->argc);
+	i = 0;
 	while (i < cmd->argc)
 	{
 		ft_printf("|%s|\n", cmd->argv[i]);
@@ -168,5 +207,5 @@ int			main(int argc, char **argv)
 	}
 	free(cmd->argv);
 	free(cmd);
-	/**/
+	free(line);
 }
