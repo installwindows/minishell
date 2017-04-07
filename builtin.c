@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/05 23:47:49 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/06 17:40:55 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		msh_unsetenv(t_msh *msh, t_cmd *cmd)
 	char	**key;
 
 	if (cmd->argc < 2)
-		return (ft_fprintf(2, "usage: unsetenv key\n"));
+		return (ft_fprintf(2, "usage: unsetenv [key]\n"));
 	key = get_env(msh->env, cmd->argv[1]);
 	if (key)
 	{
@@ -108,9 +108,44 @@ int		msh_unsetenv(t_msh *msh, t_cmd *cmd)
 	return (0);
 }
 
+static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
+{
+	char	**env;
+	t_cmd	*c;
+
+	if (cmd->argc < 2)
+		return (NULL);
+	env = 
+	env = malloc(sizeof(t_cmd));
+
+}
+
 int		msh_env(t_msh *msh, t_cmd *cmd)
 {
-	ft_printf("env\n");
+	char	*path;
+	char	**env;
+	char	**argv;
+	t_cmd	*p;
+
+	p = set_builtin_env(msh, cmd);
+	if (cmd->argc < 2)
+		return (ft_fprintf(2, "usage: env [key=value]... [program [arg]...]\n"));
+	path = find_path(cmd->argv[cmd->argc - 1], msh);
+	if (!path)
+		return (print_error(MSH_PROGRAM_NOT_FOUND, cmd->argv[cmd->argc - 1]));
+	msh->pid = fork();
+	if (msh->pid > 0)
+		wait(NULL);
+	else if (msh->pid == 0)
+	{
+		env = get_key_value(t_cmd->argv);
+		if (execve(path, argv, env) == -1)
+			print_error(MSH_NOT_EXECUTABLE, path);
+		exit(1);
+	}
+	else
+		print_error(MSH_FORK_FAILED, NULL);
+	free(path);
 	return (0);
 }
 
