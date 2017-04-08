@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 22:26:09 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/07 15:20:30 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void			minishell(t_msh *msh);
 t_cmd			*setup_command(char *line);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
 char			**get_env(char **env, const char *key);
+char			*search_path(const char *cmd, t_msh *msh);
 
 /*
 ** Builtin commands

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 23:19:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/07 15:24:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 	return (NULL);
 }
 
-int		msh_echo(t_msh *msh, t_cmd *cmd)
+int			msh_echo(t_msh *msh, t_cmd *cmd)
 {
 	int		i;
 
@@ -47,7 +47,7 @@ int		msh_echo(t_msh *msh, t_cmd *cmd)
 	return (0);
 }
 
-int		msh_cd(t_msh *msh, t_cmd *cmd)
+int			msh_cd(t_msh *msh, t_cmd *cmd)
 {
 	int		r;
 
@@ -65,7 +65,7 @@ int		msh_cd(t_msh *msh, t_cmd *cmd)
 	return (r);
 }
 
-int		msh_setenv(t_msh *msh, t_cmd *cmd)
+int			msh_setenv(t_msh *msh, t_cmd *cmd)
 {
 	char	**key;
 	char	*new;
@@ -90,7 +90,7 @@ int		msh_setenv(t_msh *msh, t_cmd *cmd)
 	return (0);
 }
 
-int		msh_unsetenv(t_msh *msh, t_cmd *cmd)
+int			msh_unsetenv(t_msh *msh, t_cmd *cmd)
 {
 	char	**env;
 	char	**key;
@@ -108,56 +108,13 @@ int		msh_unsetenv(t_msh *msh, t_cmd *cmd)
 	return (0);
 }
 
-static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
-{
-	t_cmd	*c;
-	int		i;
-
-	if (!(c = malloc(sizeof(t_cmd))))
-		return (NULL);
-	i = 0;
-	while (cmd->argv[++i])
-	{
-		if (!ft_strchr(cmd->argv[i], '='))
-			break ;
-	}
-	if (i > 1 && i < cmd->argc)
-		c->env = set_env(cmd->argv, i - 1);
-
-	return (c);
-}
-
-int		msh_env(t_msh *msh, t_cmd *cmd)
-{
-	t_cmd	*p;
-
-	if (cmd->argc < 2)
-		return (ft_fprintf(2, "usage: env [key=value]... [program [arg]...]\n"));
-	p = set_builtin_env(msh, cmd);
-	if (!p)
-		return (1);
-	msh->pid = fork();
-	if (msh->pid > 0)
-		wait(NULL);
-	else if (msh->pid == 0)
-	{
-		if (execve(p->path, p->argv, p->env) == -1)
-			print_error(MSH_NOT_EXECUTABLE, p->path);
-		exit(1);
-	}
-	else
-		print_error(MSH_FORK_FAILED, NULL);
-	free_cmd(p);
-	return (0);
-}
-
-int		msh_exit(t_msh *msh, t_cmd *cmd)
+int			msh_exit(t_msh *msh, t_cmd *cmd)
 {
 	exit(0);
 	return (0);
 }
 
-int		msh_printenv(t_msh *msh, t_cmd *cmd)
+int			msh_printenv(t_msh *msh, t_cmd *cmd)
 {
 	int		i;
 
@@ -172,7 +129,7 @@ int		msh_printenv(t_msh *msh, t_cmd *cmd)
 	return (0);
 }
 
-int		msh_debug(t_msh *msh, t_cmd *cmd)
+int			msh_debug(t_msh *msh, t_cmd *cmd)
 {
 	return (0);
 }

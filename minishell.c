@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 22:28:27 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/07 15:20:01 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		find_file(const char *path, const char *file)
 	return (found);
 }
 
-char	*find_path(const char *cmd, t_msh *msh)
+char	*search_path(const char *cmd, t_msh *msh)
 {
 	char	**path_list;
 	char	*path;
@@ -81,7 +81,7 @@ static int	exec_program(t_msh *msh, t_cmd *cmd)
 {
 	char	*path;
 
-	path = find_path(cmd->argv[0], msh);
+	path = search_path(cmd->argv[0], msh);
 	if (!path)
 		return (print_error(MSH_NOT_FOUND, cmd->argv[0]));
 	msh->pid = fork();
