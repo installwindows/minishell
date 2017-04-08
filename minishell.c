@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/07 15:20:01 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/07 21:21:37 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ void	free_cmd(t_cmd *cmd)
 	i = 0;
 	while (i < cmd->argc)
 		free(cmd->argv[i++]);
+	i = 0;
+	if (cmd->env)
+	{
+		while (cmd->env[i])
+			free(cmd->env[i++]);
+		free(cmd->env);
+	}
+	if (cmd->path)
+		free(cmd->path);
 	free(cmd->argv);
 	free(cmd);
 }
