@@ -1,3 +1,6 @@
 *.o
 *.swp
 *.dSYM
+*.a
+*.out
+minishell

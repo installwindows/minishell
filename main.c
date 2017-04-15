@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:02:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/05 21:21:40 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/14 09:31:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ static t_msh	*set_msh(t_msh **msh, int argc, char **argv, char **env)
 	if (home)
 		(*msh)->home = home + 5;
 	return (*msh);
+}
+
+static char		**set_msh_path(t_msh **msh)
+{
+	if (msh->path)
+		free(msh->path);
+	
 }
 
 int				main(int argc, char **argv, char **env)

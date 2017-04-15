@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/07 21:13:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/14 09:31:48 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@
 # include <dirent.h>
 # include "libft.h"
 # include "msh_error.h"
+
+/*
+** malloc,free
+** access
+** open, close, read, write
+** opendir, readdir, closedir
+** getcwd, chdir
+** stat, lstat, fstat
+** fork, execve
+** wait, waitpid, wait3, wait4
+** signal, kill
+** exit
+*/
 
 typedef struct	s_cmd
 {
@@ -42,7 +55,7 @@ typedef struct	s_msh
 	pid_t		pid;
 	char		*prompt;
 	char		**env;
-	char		*path;
+	char		**path_list;
 	char		*home;
 	t_mshopt	opt;
 }				t_msh;
