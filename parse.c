@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 16:05:36 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 22:25:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/15 23:03:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ static char	**split_line(char *line, int size, int count, char c)
 
 	if (!(argv = malloc(sizeof(char*) * (count + 1))))
 		return (NULL);
+	argv[count] = NULL;
 	i = 0;
 	j = 0;
 	while (count--)

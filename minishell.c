@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/07 21:21:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/15 22:58:12 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,24 @@ int		find_file(const char *path, const char *file)
 
 char	*search_path(const char *cmd, t_msh *msh)
 {
-	char	**path_list;
-	char	*path;
 	int		i;
+	char	*path;
 
+	path = NULL;
 	if (!ft_strncmp(cmd, "./", 2))
 		return (find_file(".", cmd + 2) ? ft_strdup(cmd) : NULL);
-	path = NULL;
-	path_list = ft_strsplit(msh->path, ':');
-	if (path_list == NULL)
+	if (msh->path_list == NULL)
 		return (NULL);
 	i = 0;
-	while (path_list[i])
+	while (msh->path_list[i])
 	{
-		if (find_file(path_list[i], cmd))
+		if (find_file(msh->path_list[i], cmd))
 		{
-			path = ft_strcjoin(path_list[i], cmd, '/');
+			path = ft_strcjoin(msh->path_list[i], cmd, '/');
 			break ;
 		}
-		free(path_list[i++]);
+		i++;
 	}
-	while (path_list[i])
-		free(path_list[i++]);
-	free(path_list);
 	return (path);
 }
 
@@ -82,7 +77,10 @@ void	free_cmd(t_cmd *cmd)
 void	exec_command(t_msh *msh, t_cmd *cmd, char *path)
 {
 	if (execve(path, cmd->argv, msh->env) == -1)
+	{
+		perror("execve");
 		print_error(MSH_NOT_EXECUTABLE, path);
+	}
 	exit(1);
 }
 

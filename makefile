@@ -7,14 +7,17 @@ SRC=main.c \
 	builtin.c \
 	msh_error.c \
 	msh_env.c \
+	set_msh.c \
 	ft_strcjoin.c
 OBJ=$(SRC:.c=.o)
 .PHONY: test
 
 all: $(NAME)
 
-$(NAME): $(OBJ) libft.a minishell.h
+$(NAME): $(OBJ) libft.a
 	gcc $(OBJ) -o $(NAME) libft/libft.a
+
+$(OBJ): minishell.h
 
 libft.a:
 	make -C libft
