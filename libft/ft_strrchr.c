@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 23:31:06 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 00:57:08 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:46:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {

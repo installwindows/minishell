@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 22:37:38 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/29 21:17:30 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:49:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 static int	get_nb_words(char const *s, char c)

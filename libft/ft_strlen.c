@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 19:24:12 by varnaud           #+#    #+#             */
-/*   Updated: 2016/10/19 22:10:01 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:45:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

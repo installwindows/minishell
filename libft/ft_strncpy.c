@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 19:38:28 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 15:42:13 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:46:14 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strncpy(char *dest, const char *src, size_t n)
 {

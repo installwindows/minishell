@@ -6,12 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 19:27:08 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 13:09:58 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:44:55 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <errno.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s1)

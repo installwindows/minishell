@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 15:53:25 by varnaud           #+#    #+#             */
-/*   Updated: 2016/10/05 16:44:38 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:50:33 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_itoa_base(int n, int b)

@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 21:20:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/10/07 19:11:27 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:48:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {

@@ -8,6 +8,7 @@ SRC=main.c \
 	msh_error.c \
 	msh_env.c \
 	set_msh.c \
+	env.c \
 	ft_strcjoin.c
 OBJ=$(SRC:.c=.o)
 .PHONY: test

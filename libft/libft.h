@@ -6,16 +6,20 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 23:08:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/03 21:54:42 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:53:17 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <wchar.h>
 # include <stdarg.h>
+# include <errno.h>
 
 int					ft_printf(const char *format, ...);
 int					ft_fprintf(int fd, const char *format, ...);

@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 19:02:02 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 00:44:51 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:44:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

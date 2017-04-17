@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 21:51:22 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/06 14:53:48 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/16 19:49:02 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		print_error(int error, const char *msg)
 	else if (error == MSH_NOT_EXECUTABLE)
 		ft_fprintf(2, "msh: file not executable: %s\n", msg);
 	else if (error == MSH_PROGRAM_NOT_FOUND)
-		ft_fprintf(2, "msg: command not found: %s\n", msg);
+		ft_fprintf(2, "msh: command not found: %s\n", msg);
 	else
 		ft_fprintf(2, "msh: some error occured\n");
 	return (1);

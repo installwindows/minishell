@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 12:31:31 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/11 06:39:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:50:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 void	*ft_memadd(void **dest, void *src, size_t dest_size, size_t src_size)

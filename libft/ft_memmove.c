@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 16:46:24 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 17:52:17 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:44:17 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

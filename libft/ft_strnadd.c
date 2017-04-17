@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 14:08:23 by varnaud           #+#    #+#             */
-/*   Updated: 2016/10/24 09:31:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:50:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strnadd(char **dest, int n)

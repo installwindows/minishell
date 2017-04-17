@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:22:44 by varnaud           #+#    #+#             */
-/*   Updated: 2016/09/28 19:25:47 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:48:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 void	ft_memdel(void **ap)
 {

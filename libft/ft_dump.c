@@ -6,13 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 00:01:03 by varnaud           #+#    #+#             */
-/*   Updated: 2017/02/17 00:57:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:53:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static void	print_hex(const unsigned char *data, size_t size, size_t i)
 {

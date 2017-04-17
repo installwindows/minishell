@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 00:29:54 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 00:54:42 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:51:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 int		ft_putdigit(long long nbr)

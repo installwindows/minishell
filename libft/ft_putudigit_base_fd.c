@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:58:07 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/21 19:33:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:53:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 int		ft_putudigit_base_fd(unsigned long long n, int base, int (*f)(int),

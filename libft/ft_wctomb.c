@@ -6,11 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 21:55:03 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 22:27:20 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:51:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <wchar.h>
+#include "libft.h"
 
 int		ft_wctomb(char *mb, wchar_t wc)
 {

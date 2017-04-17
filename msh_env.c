@@ -6,11 +6,26 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/07 21:18:38 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/16 21:09:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int			msh_printenv(t_msh *msh, t_cmd *cmd)
+{
+	int		i;
+
+	i = -1;
+	while (msh->env[++i])
+	{
+		if (cmd->argc > 1)
+			if (ft_strncmp(msh->env[i], cmd->argv[1], ft_strlen(cmd->argv[1])))
+				continue ;
+		ft_printf("%s\n", msh->env[i]);
+	}
+	return (0);
+}
 
 static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
 {
@@ -47,6 +62,8 @@ int		msh_env(t_msh *msh, t_cmd *cmd)
 {
 	t_cmd	*p;
 
+	if (cmd->argc == 1)
+		return (msh_printenv(msh, cmd));
 	if (cmd->argc < 2)
 		return (ft_fprintf(2, "usage: env [key=value]... [program [arg]...]\n"));
 	if (!(p = set_builtin_env(msh, cmd)))

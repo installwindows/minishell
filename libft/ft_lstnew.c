@@ -6,11 +6,10 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 23:01:48 by varnaud           #+#    #+#             */
-/*   Updated: 2016/10/01 16:40:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/11 17:50:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
