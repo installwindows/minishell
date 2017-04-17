@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 21:37:33 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 14:24:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			msh_cd(t_msh *msh, t_cmd *cmd)
 			return (ft_fprintf(2, "Can't cd into: %s\n", cmd->argv[1]));
 		ft_setenv(&msh->env, "OLDPWD", cwd);
 		ft_setenv(&msh->env, "PWD", cmd->argv[1]);
+		set_prompt(msh, cmd->argv[1]);
 	}
 	else
 	{
@@ -65,6 +66,7 @@ int			msh_cd(t_msh *msh, t_cmd *cmd)
 			return (ft_fprintf(2, "Can't cd into: %s\n", msh->home));
 		ft_setenv(&msh->env, "OLDPWD", cwd);
 		ft_setenv(&msh->env, "PWD", msh->home);
+		set_prompt(msh, msh->home);
 	}
 	return (0);
 }

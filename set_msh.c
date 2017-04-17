@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:39:27 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 23:57:42 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 14:24:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_msh			*set_msh(t_msh **msh, int argc, char **argv, char **env)
 	(*msh)->prompt_bufsize = 1024;
 	if (!((*msh)->prompt = malloc(sizeof(char) * 1024)))
 		return (NULL);
-	set_prompt(*msh, "\e[92m$>\e[39m");
+	set_prompt(*msh, NULL);
 	(*msh)->pid = 42;
 	home = ft_findenv(env, "HOME");
 	if (home)

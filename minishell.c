@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 15:59:05 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 14:13:51 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int		find_file(const char *path, const char *file)
 	if (!(p = opendir(path)))
 		return (0);
 	while ((e = readdir(p)))
-		if (!ft_strcmp(e->d_name, file))
+		if (e->d_name[0] == '.')
+			continue ;
+		else if (!ft_strcmp(e->d_name, file))
 		{
 			found = 1;
 			break ;
