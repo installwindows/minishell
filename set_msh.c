@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:39:27 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 21:17:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/16 23:57:42 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char		**set_mshenv(t_msh *msh, char **env)
 		size++;
 		i++;
 	}
-	if (!(msh->env = malloc(sizeof(char*) * size)))
+	if (!(msh->env = malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	i = 0;
 	while (env[i])
