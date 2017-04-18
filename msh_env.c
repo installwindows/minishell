@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 21:09:03 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 18:26:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int			msh_printenv(t_msh *msh, t_cmd *cmd)
 {
 	int		i;
 
+	if (msh->env == NULL)
+		return (0);
 	i = -1;
 	while (msh->env[++i])
 	{

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:39:27 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 14:24:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 18:29:23 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char		**set_mshenv(t_msh *msh, char **env)
 	return (msh->env);
 }
 
-static char		**set_msh_path(t_msh *msh)
+char			**set_msh_path(t_msh *msh)
 {
 	int		i;
 	char	**path;
@@ -70,14 +70,13 @@ t_msh			*set_msh(t_msh **msh, int argc, char **argv, char **env)
 	if (env != NULL)
 		if (!((*msh)->env = set_mshenv(*msh, env)))
 			return (NULL);
+	(*msh)->pid = 42;
+	home = ft_findenv(env, "HOME");
+	(*msh)->home = home ? *home + 5 : NULL;
+	set_msh_path(*msh);
 	(*msh)->prompt_bufsize = 1024;
 	if (!((*msh)->prompt = malloc(sizeof(char) * 1024)))
 		return (NULL);
-	set_prompt(*msh, NULL);
-	(*msh)->pid = 42;
-	home = ft_findenv(env, "HOME");
-	if (home)
-		(*msh)->home = *home + 5;
-	set_msh_path(*msh);
+	set_prompt(*msh, 0);
 	return (*msh);
 }

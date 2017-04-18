@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 21:14:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 18:29:38 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_msh
 typedef int		(*t_command)(t_msh*, t_cmd*);
 t_msh			*set_msh(t_msh **msh, int argc, char **argv, char **env);
 char			**get_env(char **env, const char *key);
-char			*set_prompt(t_msh *msh, const char *prompt);
+char			*set_prompt(t_msh *msh, int status);
 int				print_error(int error, const char *msg);
 void			minishell(t_msh *msh);
 //t_cmd			*parse_line(char *line);
@@ -72,6 +72,7 @@ t_cmd			*setup_command(char *line, t_msh *msh);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
 char			*search_path(const char *cmd, t_msh *msh);
 void			free_cmd(t_cmd *cmd);
+char			**set_msh_path(t_msh *msh);
 
 /*
 ** Builtin commands
@@ -95,5 +96,6 @@ char			**ft_arrayrm(char **a, const char *key);
 int				ft_setenv(char ***env, const char *key, const char *value);
 int				ft_unsetenv(char ***env, const char *key);
 char			**ft_findenv(char **env, const char *key);
+char			*ft_strsubs(char *dest, const char *search, const char *by);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 14:13:51 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 17:26:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	free_cmd(t_cmd *cmd)
 	int		i;
 
 	i = 0;
+	if (cmd == NULL)
+		return ;
 	while (i < cmd->argc)
 		free(cmd->argv[i++]);
 	i = 0;
@@ -89,36 +91,39 @@ void	exec_command(t_msh *msh, t_cmd *cmd, char *path)
 static int	exec_program(t_msh *msh, t_cmd *cmd)
 {
 	char	*path;
+	int		stat_loc;
 
 	path = search_path(cmd->argv[0], msh);
 	if (!path)
 		return (print_error(MSH_NOT_FOUND, cmd->argv[0]));
 	msh->pid = fork();
 	if (msh->pid > 0)
-		wait(NULL);
+		wait(&stat_loc);
 	else if (msh->pid == 0)
 		exec_command(msh, cmd, path);
 	else
 		print_error(MSH_FORK_FAILED, NULL);
 	free(path);
-	return (0);
+	return (stat_loc);
 }
 
 void	minishell(t_msh *msh)
 {
 	t_cmd	*cmd;
 	int		(*builtin)(t_msh*, t_cmd*);
+	int		status;
 
+	status = 0;
 	while (1)
 	{
-		ft_printf("%s", msh->prompt);
+		ft_printf("%s", set_prompt(msh, status));
 		msh->line_size = gnl(0, &msh->line);
 		if ((cmd = setup_command(msh->line, msh)))
 		{
 			if ((builtin = find_builtin(msh, cmd)))
-				builtin(msh, cmd);
+				status = builtin(msh, cmd);
 			else
-				exec_program(msh, cmd);
+				status = exec_program(msh, cmd);
 		}
 		if (msh->line_size > 0)
 			free(msh->line);

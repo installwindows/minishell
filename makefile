@@ -9,7 +9,8 @@ SRC=main.c \
 	msh_env.c \
 	set_msh.c \
 	env.c \
-	ft_strcjoin.c
+	ft_strcjoin.c \
+	ft_strsubs.c
 OBJ=$(SRC:.c=.o)
 .PHONY: test
 
