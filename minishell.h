@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 22:31:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:18:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/stat.h>
 # include "libft.h"
 # include "msh_error.h"
+# define IS_WHITE(c) (c == ' ' || c == '\t' || c == '\v' || c == '\r')
+# define P_V(line, i) (i > 0 ? line[i - 1] : line[i])
 
 /*
 ** malloc,free
@@ -71,10 +73,11 @@ int				print_error(int error, const char *msg);
 ** Command exec
 */
 
-void			free_cmd(t_cmd *cmd);
+int				find_file(const char *path, const char *file);
+char			*search_path(const char *cmd, t_msh *msh);
+t_cmd			*free_cmd(t_cmd *cmd);
 t_cmd			*setup_command(char *line, t_msh *msh);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
-char			*search_path(const char *cmd, t_msh *msh);
 
 /*
 ** msh set

@@ -6,14 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 16:05:36 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/16 17:58:48 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:10:52 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-#define IS_WHITE(c) (c == ' ' || c == '\t' || c == '\v' || c == '\r')
-#define P_V(line, i) (i > 0 ? line[i - 1] : line[i])
 
 static int	setup_line(char *line, int i, int count)
 {
@@ -77,7 +74,8 @@ static char	**split_line(char *line, int size, int count, t_msh *msh)
 			i++;
 		l = setup_argv(&argv[j], &k, i - k + 1, msh);
 		while ((argv[j][l] = line[k++]))
-			l += line[k - 1] == '"' && P_V(line, k - 1) != '\\' ? 0 : 1;
+			l += (line[k] == '"' && line[k - 1] == '\\') || (line[k - 1] == '"'
+					&& P_V(line, k - 1) != '\\') ? 0 : 1;
 		j++;
 	}
 	return (argv);
@@ -105,37 +103,3 @@ t_cmd		*setup_command(char *line, t_msh *msh)
 	cmd->env = NULL;
 	return (cmd);
 }
-
-/*
-int			main(int argc, char **argv)
-{
-	t_cmd	*cmd;
-	int		i;
-	int		r;
-	char	*line;
-
-	//printf("argc: %d\n", argc - 1);
-	//while (*++argv)
-	//	ft_printf("%s\n", *argv);
-	//ft_printf("----\n");
-	r = gnl(0, &line);
-	if (r == -1 || !line)
-	{
-		ft_fprintf(2, "%s: no input\n", argv[0]);
-		return (1);
-	}
-	cmd = setup_command(line);
-	if (cmd == NULL)
-		return (ft_fprintf(2, "No command to set\n"));
-	ft_printf("path: %s\nargc: %d\n", cmd->path, cmd->argc);
-	i = 0;
-	while (i < cmd->argc)
-	{
-		ft_printf("|%s|\n", cmd->argv[i]);
-		free(cmd->argv[i++]);
-	}
-	free(cmd->argv);
-	free(cmd);
-	free(line);
-}
-*/

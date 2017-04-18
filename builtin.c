@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 00:34:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:17:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,39 +67,6 @@ int			msh_cd(t_msh *msh, t_cmd *cmd)
 	ft_setenv(&msh->env, "OLDPWD", cwd);
 	ft_setenv(&msh->env, "PWD", dir);
 	return (0);
-}
-
-int			msh_setenv(t_msh *msh, t_cmd *cmd)
-{
-	char	**key;
-	char	*new;
-	char	**env;
-	int		r;
-
-	if (cmd->argc != 3 || cmd->argv[1][0] == '\0')
-		return (ft_fprintf(2, "usage: setenv [key] [value]\n"));
-	r = ft_setenv(&msh->env, cmd->argv[1], cmd->argv[2]);
-	if (!r && !ft_strcmp(cmd->argv[1], "PATH"))
-		set_msh_path(msh);
-	if (r)
-		ft_fprintf(2, "setenv: Cannot set key: %s\n", cmd->argv[1]);
-	return (r);
-}
-
-int			msh_unsetenv(t_msh *msh, t_cmd *cmd)
-{
-	char	**env;
-	char	**key;
-	int		r;
-
-	if (cmd->argc != 2 || cmd->argv[1][0] == '\0')
-		return (ft_fprintf(2, "usage: unsetenv [key]\n"));
-	r = ft_unsetenv(&msh->env, cmd->argv[1]);
-	if (!r && !ft_strcmp(cmd->argv[1], "PATH"))
-		set_msh_path(msh);
-	if (r)
-		ft_fprintf(2, "unsetenv: Key not found: %s\n", cmd->argv[1]);
-	return (r);
 }
 
 int			msh_exit(t_msh *msh, t_cmd *cmd)
