@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 18:29:38 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 21:07:32 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,25 @@ typedef struct	s_msh
 }				t_msh;
 
 typedef int		(*t_command)(t_msh*, t_cmd*);
-t_msh			*set_msh(t_msh **msh, int argc, char **argv, char **env);
-char			**get_env(char **env, const char *key);
-char			*set_prompt(t_msh *msh, int status);
-int				print_error(int error, const char *msg);
+
 void			minishell(t_msh *msh);
-//t_cmd			*parse_line(char *line);
+int				print_error(int error, const char *msg);
+
+/*
+** Command exec
+*/
+
+void			free_cmd(t_cmd *cmd);
 t_cmd			*setup_command(char *line, t_msh *msh);
 t_command		find_builtin(t_msh *msh, t_cmd *cmd);
 char			*search_path(const char *cmd, t_msh *msh);
-void			free_cmd(t_cmd *cmd);
+
+/*
+** msh set
+*/
+
+t_msh			*set_msh(t_msh **msh, int argc, char **argv, char **env);
+char			*set_prompt(t_msh *msh, int status);
 char			**set_msh_path(t_msh *msh);
 
 /*
@@ -86,16 +95,5 @@ int				msh_env(t_msh *msh, t_cmd *cmd);
 int				msh_exit(t_msh *msh, t_cmd *cmd);
 int				msh_printenv(t_msh *msh, t_cmd *cmd);
 int				msh_debug(t_msh *msh, t_cmd *cmd);
-
-/*
-** TODO Add to libft
-*/
-char			*ft_strcjoin(const char *path, const char *file, char c);
-char			**ft_arrayadd(char **a, const char *env);
-char			**ft_arrayrm(char **a, const char *key);
-int				ft_setenv(char ***env, const char *key, const char *value);
-int				ft_unsetenv(char ***env, const char *key);
-char			**ft_findenv(char **env, const char *key);
-char			*ft_strsubs(char *dest, const char *search, const char *by);
 
 #endif

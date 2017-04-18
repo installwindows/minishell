@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsubesc.c                                     :+:      :+:    :+:   */
+/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/28 21:26:57 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/04 16:21:00 by varnaud          ###   ########.fr       */
+/*   Created: 2017/04/05 15:24:04 by varnaud           #+#    #+#             */
+/*   Updated: 2017/04/17 20:49:30 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsubesc(char const *s, unsigned int start, size_t len)
+char	*ft_strcjoin(const char *path, const char *file, char c)
 {
-	char	*fresh;
-	size_t	i;
+	char	*pathfile;
+	int		i;
+	int		l1;
+	int		l2;
+	int		size;
 
-	fresh = ft_strnew(len);
-	if (fresh == NULL)
-		return (NULL);
+	l1 = ft_strlen(path);
+	l2 = ft_strlen(file);
+	size = l1 + l2 + 1;
+	pathfile = malloc(sizeof(char) * size + 1);
 	i = 0;
-	while (i < len && s[start])
+	while (i < l1)
 	{
-		if (s[start] == '\\' && s[start + 1]  && s[start + 1] != '\\')
-		{
-			len--;
-			start += 1;
-		}
-		fresh[i] = s[start];
+		pathfile[i] = path[i];
 		i++;
-		start++;
 	}
-	return (fresh);
+	l1 = 0;
+	pathfile[i++] = c;
+	while (i < size)
+	{
+		pathfile[i] = file[l1++];
+		i++;
+	}
+	pathfile[i] = '\0';
+	return (pathfile);
 }

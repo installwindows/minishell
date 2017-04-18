@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/11 17:57:00 by varnaud           #+#    #+#              #
-#    Updated: 2017/04/11 17:57:05 by varnaud          ###   ########.fr        #
+#    Updated: 2017/04/17 20:52:27 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,10 @@ FTSRC	=	ft_abs.c \
 			ft_putudigit_base_fd.c \
 			ft_putnchar_fd.c \
 			ft_putnstr_fd.c \
-			gnl.c
+			gnl.c \
+			ft_env.c \
+			ft_strsubs.c \
+			ft_strcjoin.c
 PFDIR	=	ft_printf/
 PFSRC	=	ft_printf.c \
 			handle_string.c \

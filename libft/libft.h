@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 23:08:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/11 17:53:17 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 20:54:52 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,10 @@ int					ft_putudigit_base_fd(unsigned long long n, int base,
 					int (*f)(int), int fd);
 int					ft_putnchar_fd(char c, unsigned int n, int fd);
 int					ft_putnstr_fd(const char *str, size_t n, int fd);
+char				*ft_strsubs(char *dest, const char *search, const char *by);
+char				*ft_strcjoin(const char *path, const char *file, char c);
+char				**ft_findenv(char **env, const char *key);
+int					ft_setenv(char ***env, const char *key, const char *value);
+int					ft_unsetenv(char ***env, const char *key);
 
 #endif
