@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 22:34:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 00:34:19 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			msh_setenv(t_msh *msh, t_cmd *cmd)
 	char	**env;
 	int		r;
 
-	if (cmd->argc != 3 || cmd->argv[1][0] == '\0' || cmd->argv[2][0] == '\0')
+	if (cmd->argc != 3 || cmd->argv[1][0] == '\0')
 		return (ft_fprintf(2, "usage: setenv [key] [value]\n"));
 	r = ft_setenv(&msh->env, cmd->argv[1], cmd->argv[2]);
 	if (!r && !ft_strcmp(cmd->argv[1], "PATH"))
