@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:17:05 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:26:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_command	find_builtin(t_msh *msh, t_cmd *cmd)
 		return (&msh_exit);
 	if (!ft_strcmp(cmd->argv[0], "debug"))
 		return (&msh_debug);
-	return (NULL);
+	return (msh ? NULL : NULL);
 }
 
 int			msh_echo(t_msh *msh, t_cmd *cmd)
@@ -42,7 +42,7 @@ int			msh_echo(t_msh *msh, t_cmd *cmd)
 		i++;
 	}
 	ft_printf("\n");
-	return (0);
+	return (!msh);
 }
 
 int			msh_cd(t_msh *msh, t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:20:36 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:27:18 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int			msh_setenv(t_msh *msh, t_cmd *cmd)
 {
-	char	**key;
-	char	*new;
-	char	**env;
 	int		r;
 
 	if (cmd->argc != 3 || cmd->argv[1][0] == '\0')
@@ -31,8 +28,6 @@ int			msh_setenv(t_msh *msh, t_cmd *cmd)
 
 int			msh_unsetenv(t_msh *msh, t_cmd *cmd)
 {
-	char	**env;
-	char	**key;
 	int		r;
 
 	if (cmd->argc != 2 || cmd->argv[1][0] == '\0')

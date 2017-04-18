@@ -1,6 +1,6 @@
 NAME=minishell
 CC=gcc
-CFLAGS=-g -Ilibft
+CFLAGS=-g -Ilibft -Wall -Werror -Wextra
 SRC=main.c \
 	minishell.c \
 	parse.c \

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:02:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:21:46 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:23:55 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 char			*set_prompt(t_msh *msh, int status)
 {
-	int		len;
-	int		i;
 	char	cwd[1024];
 
 	getcwd(cwd, 1017);

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:14:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:24:34 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	exec_program(t_msh *msh, t_cmd *cmd)
 	char	*path;
 	int		stat_loc;
 
+	stat_loc = 0;
 	path = search_path(cmd->argv[0], msh);
 	if (!path)
 		return (print_error(MSH_NOT_FOUND, cmd->argv[0]));
