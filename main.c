@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:02:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 18:38:15 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 00:05:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char			*set_prompt(t_msh *msh, int status)
 	return (msh->prompt);
 }
 
+//I was forced to do this commit, please send help...
 int				main(int argc, char **argv, char **env)
 {
 	t_msh		*msh;
