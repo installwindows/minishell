@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 18:26:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 23:50:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
 		if (cmd->argv[i])
 			c->argv[k++] = ft_strdup(cmd->argv[i]);
 	}
-	c->env[j] = NULL;
+	c->env[j] = NULL.st_mode;
 	c->argv[k] = NULL;
 	c->path = search_path(c->argv[0], msh);
 	if (!c->argv || !c->path)

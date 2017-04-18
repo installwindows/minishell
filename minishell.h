@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/17 21:07:32 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/17 22:31:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <dirent.h>
+# include <sys/stat.h>
 # include "libft.h"
 # include "msh_error.h"
 
