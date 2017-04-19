@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 20:49:29 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 21:10:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
 	int		k;
 
 	c = malloc(sizeof(t_cmd));
+	ft_memset(c, 0, sizeof(t_cmd));
 	c->argv = malloc(sizeof(char*) * cmd->argc);
 	c->env = malloc(sizeof(char*) * cmd->argc);
 	i = 0;

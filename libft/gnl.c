@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 23:42:22 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/28 10:50:24 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 21:25:25 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int			gnl(const int fd, char **line)
 	int			i;
 
 	if (fd < 0)
-		return (-1);
+		return (fd == -42 ? free_gnl(&list) : -1);
 	if (!(current = get_or_rm_fd(&list, fd, 0)))
 		current = add_fd(&list, fd);
 	r = read_fd(current, line);

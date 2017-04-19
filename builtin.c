@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:26:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 21:23:12 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,29 @@ int			msh_cd(t_msh *msh, t_cmd *cmd)
 
 int			msh_exit(t_msh *msh, t_cmd *cmd)
 {
+	int		i;
+
+	if (msh->line)
+		free(msh->line);
+	if (msh->prompt)
+		free(msh->prompt);
+	i = 0;
+	if (msh->env)
+	{
+		while (msh->env[i])
+			free(msh->env[i++]);
+		free(msh->env);
+	}
+	i = 0;
+	if (msh->path_list)
+	{
+		while (msh->path_list[i])
+			free(msh->path_list[i++]);
+		free(msh->path_list);
+	}
+	free (msh);
+	free_cmd(cmd);
+	gnl(-42, NULL);
 	exit(0);
 	return (!(msh || cmd));
 }

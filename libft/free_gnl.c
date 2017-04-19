@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.h                                              :+:      :+:    :+:   */
+/*   free_gnl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/23 23:43:03 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 21:25:21 by varnaud          ###   ########.fr       */
+/*   Created: 2017/04/18 21:21:48 by varnaud           #+#    #+#             */
+/*   Updated: 2017/04/18 21:25:33 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
-# define BUFF_SIZE 1024
+#include <stdlib.h>
+#include "gnl.h"
 
-typedef struct	s_fd
+int		free_gnl(t_fd **list)
 {
-	int			fd;
-	int			i;
-	int			size;
-	char		*buf;
-	struct s_fd	*next;
-}				t_fd;
+	t_fd	*current;
+	t_fd	*n;
 
-int				free_gnl(t_fd **list);
-
-#endif
+	current = *list;
+	while (current)
+	{
+		if (current->buf)
+			free(current->buf);
+		n = current->next;
+		free(current);
+		current = n;
+	}
+	*list = NULL;
+	return (-1);
+}
