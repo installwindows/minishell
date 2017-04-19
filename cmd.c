@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 15:11:51 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:19:22 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 20:49:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,15 @@ t_cmd	*free_cmd(t_cmd *cmd)
 {
 	int		i;
 
-	i = 0;
 	if (cmd == NULL)
 		return (NULL);
-	while (i < cmd->argc)
-		free(cmd->argv[i++]);
+	i = 0;
+	if (cmd->argv)
+	{
+		while (cmd->argv[i])
+			free(cmd->argv[i++]);
+		free(cmd->argv);
+	}
 	i = 0;
 	if (cmd->env)
 	{
@@ -74,7 +78,6 @@ t_cmd	*free_cmd(t_cmd *cmd)
 	}
 	if (cmd->path)
 		free(cmd->path);
-	free(cmd->argv);
 	free(cmd);
 	return (NULL);
 }
