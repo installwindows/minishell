@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 21:10:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 23:42:52 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			msh_setenv(t_msh *msh, t_cmd *cmd)
+int				msh_setenv(t_msh *msh, t_cmd *cmd)
 {
 	int		r;
 
@@ -26,7 +26,7 @@ int			msh_setenv(t_msh *msh, t_cmd *cmd)
 	return (r);
 }
 
-int			msh_unsetenv(t_msh *msh, t_cmd *cmd)
+int				msh_unsetenv(t_msh *msh, t_cmd *cmd)
 {
 	int		r;
 
@@ -40,7 +40,7 @@ int			msh_unsetenv(t_msh *msh, t_cmd *cmd)
 	return (r);
 }
 
-int			msh_printenv(t_msh *msh, t_cmd *cmd)
+int				msh_printenv(t_msh *msh, t_cmd *cmd)
 {
 	int		i;
 
@@ -83,7 +83,7 @@ static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
 	return (c);
 }
 
-int		msh_env(t_msh *msh, t_cmd *cmd)
+int				msh_env(t_msh *msh, t_cmd *cmd)
 {
 	t_cmd	*p;
 	int		r;
@@ -91,9 +91,6 @@ int		msh_env(t_msh *msh, t_cmd *cmd)
 	r = 0;
 	if (cmd->argc == 1)
 		return (msh_printenv(msh, cmd));
-	if (cmd->argc < 2)
-		return (ft_fprintf(2,
-				"usage: env [key=value]... [program [arg]...]\n"));
 	if (!(p = set_builtin_env(msh, cmd)))
 		return (1);
 	msh->pid = fork();

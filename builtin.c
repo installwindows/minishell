@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 13:31:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 21:23:12 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 23:41:33 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			msh_exit(t_msh *msh, t_cmd *cmd)
 			free(msh->path_list[i++]);
 		free(msh->path_list);
 	}
-	free (msh);
+	free(msh);
 	free_cmd(cmd);
 	gnl(-42, NULL);
 	exit(0);

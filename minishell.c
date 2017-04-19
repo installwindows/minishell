@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 22:40:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 23:41:49 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	exec_program(t_msh *msh, t_cmd *cmd)
 	return (stat_loc);
 }
 
-void	minishell(t_msh *msh)
+void		minishell(t_msh *msh)
 {
 	t_cmd	*cmd;
 	int		(*builtin)(t_msh*, t_cmd*);

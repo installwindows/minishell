@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 22:25:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 23:43:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int				msh_debug(t_msh *msh, t_cmd *cmd);
 ** Signal
 */
 
-void	int_handler(int n);
+void			int_handler(int n);
 
 #endif
