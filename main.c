@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:02:11 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:23:55 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 22:25:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int				main(int argc, char **argv, char **env)
 		ft_fprintf(2, "Can't start: %s\n", argv[0]);
 		exit(1);
 	}
+	signal(SIGINT, int_handler);
 	minishell(msh);
 }
