@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 15:11:51 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 20:49:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 22:08:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		find_file(const char *path, const char *file)
+int			find_file(const char *path, const char *file)
 {
 	DIR				*p;
 	struct dirent	*e;
@@ -33,14 +33,15 @@ int		find_file(const char *path, const char *file)
 	return (found);
 }
 
-char	*search_path(const char *cmd, t_msh *msh)
+char		*search_path(const char *cmd, t_msh *msh)
 {
-	int		i;
-	char	*path;
+	int			i;
+	char		*path;
+	struct stat	s;
 
 	path = NULL;
-	if (!ft_strncmp(cmd, "./", 2))
-		return (find_file(".", cmd + 2) ? ft_strdup(cmd) : NULL);
+	if (ft_strchr(cmd, '/'))
+		return (!stat(cmd, &s) ? ft_strdup(cmd) : NULL);
 	if (msh->path_list == NULL)
 		return (NULL);
 	i = 0;
@@ -56,7 +57,7 @@ char	*search_path(const char *cmd, t_msh *msh)
 	return (path);
 }
 
-t_cmd	*free_cmd(t_cmd *cmd)
+t_cmd		*free_cmd(t_cmd *cmd)
 {
 	int		i;
 
