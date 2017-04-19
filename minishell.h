@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:04:49 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:18:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 16:56:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@
 # include "msh_error.h"
 # define IS_WHITE(c) (c == ' ' || c == '\t' || c == '\v' || c == '\r')
 # define P_V(line, i) (i > 0 ? line[i - 1] : line[i])
-
-/*
-** malloc,free
-** access
-** open, close, read, write
-** opendir, readdir, closedir
-** getcwd, chdir
-** stat, lstat, fstat
-** fork, execve
-** wait, waitpid, wait3, wait4
-** signal, kill
-** exit
-*/
 
 typedef struct	s_cmd
 {

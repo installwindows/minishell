@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 14:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:24:34 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 15:36:13 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	exec_command(t_msh *msh, t_cmd *cmd, char *path)
 {
 	if (execve(path, cmd->argv, msh->env) == -1)
 	{
-		perror("execve");
 		print_error(MSH_NOT_EXECUTABLE, path);
 	}
 	exit(1);

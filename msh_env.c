@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:23:48 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/18 15:27:18 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/04/18 17:12:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ static t_cmd	*set_builtin_env(t_msh *msh, t_cmd *cmd)
 int		msh_env(t_msh *msh, t_cmd *cmd)
 {
 	t_cmd	*p;
+	int		r;
 
+	r = 0;
 	if (cmd->argc == 1)
 		return (msh_printenv(msh, cmd));
 	if (cmd->argc < 2)
@@ -98,7 +100,7 @@ int		msh_env(t_msh *msh, t_cmd *cmd)
 		return (1);
 	msh->pid = fork();
 	if (msh->pid > 0)
-		wait(NULL);
+		wait(&r);
 	else if (msh->pid == 0)
 	{
 		if (execve(p->path, p->argv, p->env) == -1)
@@ -108,5 +110,5 @@ int		msh_env(t_msh *msh, t_cmd *cmd)
 	else
 		print_error(MSH_FORK_FAILED, NULL);
 	free_cmd(p);
-	return (0);
+	return (r);
 }
